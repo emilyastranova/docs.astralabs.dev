@@ -23,6 +23,20 @@ iface eth0 inet static
     gateway 192.0.2.254
 ```
 
+### Restart Networking Service
+
+Finally, as the `root` user or by running `sudo`, restart the `networking` service, usually accomplished with:
+
+```shell
+systemctl restart networking
+```
+
+or
+
+```shell
+service networking restart
+```
+
 ## SSH Tunneling
 
 SSH tunneling is a way to securely connect to a remote server through a local server. This is useful for accessing a remote server that is behind a firewall or NAT. It can also be used to access a remote server that is not directly accessible from the internet.

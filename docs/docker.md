@@ -86,7 +86,7 @@ Kasm Workspaces is a web-based Docker management tool. It allows you to manage y
     cd /tmp && \
     curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.13.1.421524.tar.gz && \
     tar -xf kasm_release_1.13.1.421524.tar.gz && \
-    sudo bash kasm_release/install.sh && \
+    sudo bash kasm_release/install.sh
 
 ### Uninstall
 

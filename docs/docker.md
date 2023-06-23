@@ -84,8 +84,8 @@ Kasm Workspaces is a web-based Docker management tool. It allows you to manage y
 ### Install
 
     cd /tmp && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.12.0.d4fd8a.tar.gz && \
-    tar -xf kasm_release_1.12.0.d4fd8a.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.13.1.421524.tar.gz && \
+    tar -xf kasm_release_1.13.1.421524.tar.gz && \
     sudo bash kasm_release/install.sh && \
 
 ### Uninstall
@@ -96,14 +96,14 @@ Kasm Workspaces is a web-based Docker management tool. It allows you to manage y
     export KASM_GID=$(id kasm -g) && \
     sudo -E docker compose -f /opt/kasm/current/docker/docker-compose.yaml rm && \
     sudo docker network rm kasm_default_network && \
-    sudo docker volume rm kasm_db_1.12.0 && \
+    sudo docker volume rm kasm_db_1.13.1 && \
     sudo docker rmi redis:5-alpine && \
     sudo docker rmi postgres:9.5-alpine && \
     sudo docker rmi kasmweb/nginx:latest && \
-    sudo docker rmi kasmweb/share:1.12.0 && \
-    sudo docker rmi kasmweb/agent:1.12.0 && \
-    sudo docker rmi kasmweb/manager:1.12.0 && \
-    sudo docker rmi kasmweb/api:1.12.0 && \
+    sudo docker rmi kasmweb/share:1.13.1 && \
+    sudo docker rmi kasmweb/agent:1.13.1 && \
+    sudo docker rmi kasmweb/manager:1.13.1 && \
+    sudo docker rmi kasmweb/api:1.13.1 && \
 
     sudo docker rmi $(sudo docker images --filter "label=com.kasmweb.image=true" -q) && \
     sudo rm -rf /opt/kasm/ && \

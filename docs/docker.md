@@ -49,6 +49,17 @@ Collection of useful Docker commands and utilities. Learn all about Docker, from
     service docker start
     ```
 
+## Run Docker GUI applications
+
+If you're looking to run graphical applications within a Docker container, you can follow these steps. This is particularly helpful for GUI applications, as it enables you to display their interfaces on your local machine while the application itself runs within the container.
+
+To achieve this, you'll need to allow connections to your local X server, which handles graphical interfaces. The following commands show how to set up the necessary environment for running a Docker container with GUI applications:
+
+```bash
+xhost +local:
+docker run --pid=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro image
+```
+
 ## Portainer
 
 Portainer is a web-based Docker management tool. It allows you to manage your Docker containers, images, volumes, networks and more! Portainer is meant to be as simple to deploy as it is to use. It consists of a single container that can run on any Docker engine (Docker for Linux and Docker for Windows are supported).

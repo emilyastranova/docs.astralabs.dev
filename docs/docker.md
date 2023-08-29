@@ -56,8 +56,9 @@ If you're looking to run graphical applications within a Docker container, you c
 To achieve this, you'll need to allow connections to your local X server, which handles graphical interfaces. The following commands show how to set up the necessary environment for running a Docker container with GUI applications:
 
 ```bash
-xhost +local:
-docker run --pid=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro image
+xhost +local: && \
+docker run -dit --pid=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro --name gui_application debian:12 && \
+docker exec -it gui_application bash
 ```
 
 ## Portainer

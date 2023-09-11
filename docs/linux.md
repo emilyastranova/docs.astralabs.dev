@@ -288,6 +288,33 @@ ps aux | grep <application_name>
 
 Replace `<application_name>` with the name of the application you want to find. This command will display a list of processes that match the specified application name. The first column of the output will be the PID of the running application.
 
+### Removing Files Matching a Specific Pattern Using `grep` and `rm`
+
+Sometimes, you may need to search for and remove files that match a specific pattern or contain a particular text string. You can achieve this using a combination of the `grep` and `rm` commands in a Unix-like environment.
+
+##### Command Explanation
+
+Here's a breakdown of the command:
+
+- **`grep -rl "NT_STATUS_OBJECT_NAME_NOT_FOUND" .`**: This part of the command uses `grep` to recursively search for files (`-r`) in the current directory (`.`) that contain the text string "NT_STATUS_OBJECT_NAME_NOT_FOUND." The `-l` option tells `grep` to only list the names of matching files.
+
+- **`|` (Pipe)**: The pipe symbol (`|`) is used to pass the list of matching file names as input to the next part of the command.
+
+- **`while IFS= read -r file; do rm -f "$file"; done`**: This part of the command sets up a loop to process each matching file. Here's what each component does:
+  - `while IFS= read -r file;`: This initiates a loop that reads each file name (line) from the list of matching files.
+  - `do`: Indicates the start of the loop's commands.
+  - `rm -f "$file";`: Within the loop, it uses the `rm` (remove) command to forcefully delete (`-f`) the file specified by the `$file` variable, which represents each matching file.
+  - `done`: Marks the end of the loop.
+
+##### Result
+
+Executing this command will search for all files in the current directory and its subdirectories that contain the text "NT_STATUS_OBJECT_NAME_NOT_FOUND." For each matching file, it will remove the file using the `rm` command with the `-f` option to force removal.
+
+This approach is not limited to specific patterns or text strings and can be adapted for various use cases where you need to search for and remove files based on specific criteria.
+
+!!! warning "Caution"
+    Be extremely careful when using the `rm` command with the `-f` option, as it forcefully deletes files without confirmation, and there is no easy way to recover them. Make sure you are certain about the files you want to remove, and use this command responsibly.
+
 ## Useful Applications
 
 ### Graphical Applications

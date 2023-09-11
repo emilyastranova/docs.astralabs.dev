@@ -315,6 +315,38 @@ This approach is not limited to specific patterns or text strings and can be ada
 !!! warning "Caution"
     Be extremely careful when using the `rm` command with the `-f` option, as it forcefully deletes files without confirmation, and there is no easy way to recover them. Make sure you are certain about the files you want to remove, and use this command responsibly.
 
+### Making Filenames Windows Friendly with `detox`
+
+To make all of the filenames in a directory Windows-friendly, you can use the `detox` command. This tool helps you clean and sanitize filenames, ensuring compatibility with Windows file systems.
+
+```shell
+detox -r .
+```
+
+### Removing the Last Character from Filenames with rename
+
+If you need to remove the last character from the filename of every file in the current directory, you can use the `rename` command with a regular expression.
+
+```shell
+rename "s/.{1}$//" *
+```
+
+### Recursively Checking Files for a String with grep
+
+To recursively check files for a specific string within a directory, you can use the `grep` command with the `-Rnw` options.
+
+```shell
+grep -Rnw '/path/to/somewhere/' -e 'pattern'
+```
+
+### Prettifying and Scrolling Through JSON
+
+If you want to prettify and scroll through JSON data while highlighting syntax in color, you can use `jq` in conjunction with `less`:
+
+```shell
+jq -C . [jsonfile] | less -r
+```
+
 ## Useful Applications
 
 ### Graphical Applications

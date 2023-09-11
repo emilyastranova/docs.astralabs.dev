@@ -8,7 +8,7 @@ Learn about CTFs and how to hack like a pro.
 
 `socat` is a versatile networking utility that allows you to relay traffic between different network endpoints while providing various options for data manipulation and redirection.
 
-#### Example
+Example:
 
 You can use `socat` to relay traffic from one network endpoint to another while sniffing and printing the data to standard output. Here's an example command:
 

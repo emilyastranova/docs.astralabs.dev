@@ -139,6 +139,14 @@ sudo rm /etc/resolv.conf
 sudo ln -sv /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
 
+### Fedora upadte-grub alternative
+
+For whatever reason, Fedora doesn't have an `update-grub` command, so here is the alternative:
+
+```bash
+sudo grub2-mkconfig -o $(readlink -f /etc/grub2-efi.cfg)
+```
+
 ### Pipewire GNOME Audio Slider/Hotkeys Not Working
 
 If you are using Pipewire and the Gnome audio slider/hotkeys iare not working, you can try to fix it by running:

@@ -24,13 +24,13 @@ To get started with this project, you will need the following prerequisites:
 1. Clone the repository
 
     ```bash
-    git clone https://github.com/tyleraharrison/docs.tylerharrison.dev.git
+    git clone https://github.com/emilyastranova/docs.astralabs.dev.git
     ```
 
 2. Build the container
 
     ```bash
-    cd docs.tylerharrison.dev
+    cd docs.astralabs.dev
     docker-compose up --build -d
     ```
 

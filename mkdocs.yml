@@ -1,9 +1,9 @@
 site_name: The ATHENA Project
-site_url: https://docs.tylerharrison.dev/
-repo_url: https://github.com/tyleraharrison/docs.tylerharrison.dev
-repo_name: docs.tylerharrison.dev
+site_url: https://docs.astralabs.dev/
+repo_url: https://github.com/emilyastranova/docs.astralabs.dev
+repo_name: docs.astralabs.dev
 site_description: A Technical Handbook of Essential Niche Advice
-site_author: Tyler Harrison
+site_author: Emily Astranova
 remote_branch: main
 edit_uri: 'edit/main/docs/'
 

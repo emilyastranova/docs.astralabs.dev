@@ -2,7 +2,7 @@ version: '3'
 services:
   kb-mkdocs:
     build: .
-    image: tyleraharrison/kb-mkdocs:latest
+    image: astralabs/kb-mkdocs:latest
     volumes:
       - ./site:/app/site
     restart: "no"

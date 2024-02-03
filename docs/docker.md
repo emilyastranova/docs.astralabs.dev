@@ -87,7 +87,7 @@ Uninstall:
 Convert Docker run commands to `docker-compose.yml` files
 
 - Third-party host: [https://www.composerize.com/](https://www.composerize.com/)
-- My backup: [https://github.com/tyleraharrison/composerize](https://github.com/tyleraharrison/composerize)
+- My backup: [https://github.com/emilyastranova/composerize](https://github.com/emilyastranova/composerize)
 
 ## Kasm Workspaces
 

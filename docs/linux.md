@@ -181,6 +181,14 @@ kquitapp5 plasmashell && kstart5 plasmashell &
 
 followed by a `disown`. Every now and then, presumably because of how the KDE Plasma desktop is D-Bus enabled, I need to ommit the `&` and instead do `CTRL-Z` followed by the `bg` and `disown` commands. More on that [here](#linux-disown).
 
+## Stop USB Devices From Preventing Suspend
+
+There is a bug in the latest Fedora 41 (at least on my Framework 13) that sometimes keeps the device awake if certain USB devices are connected. Here is the snippet I used to prevent them from waking the device while still allowing the keyboard to wake from suspend:
+
+```shell
+awk '/enabled/ {print $1}' /proc/acpi/wakeup | while read -r id; do echo $id > /proc/acpi/wakeup; done; cat /proc/acpi/wakeup
+```
+
 ## Alpine Not Automounting fstab
 
 Simply run this command:

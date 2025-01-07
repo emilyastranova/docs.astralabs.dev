@@ -78,6 +78,10 @@ Uninstall:
     docker rm portainer && \
     docker volume rm portainer_data
 
+### Misc Notes
+
+- Disable "Use SSO" if using Authentik
+
 ## SMB Volume Mount Failing at Reboot
 
 If your Docker containers use SMB volume mounts and fail to start on boot since the share is not quite available, network isn't ready, etc. then this script is for you. This is meant for an Alpine container running OpenRC, feel free to adjust for `systemd`.
@@ -145,10 +149,6 @@ If your Docker containers use SMB volume mounts and fail to start on boot since 
     ```shell
     rc-update add share-watchdog default && rc-service share-watchdog start
     ```
-
-### Misc Notes
-
-- Disable "Use SSO" if using Authentik
 
 ## Composerize
 

@@ -78,6 +78,74 @@ Uninstall:
     docker rm portainer && \
     docker volume rm portainer_data
 
+## SMB Volume Mount Failing at Reboot
+
+If your Docker containers use SMB volume mounts and fail to start on boot since the share is not quite available, network isn't ready, etc. then this script is for you. This is meant for an Alpine container running OpenRC, feel free to adjust for `systemd`.
+
+=== "Shell Script"
+
+    Create the shell script
+    
+    ```shell
+    mkdir /usr/share/scripts && nano /usr/share/scripts/share-watchdog.sh
+    ```
+
+    Shell script contents:
+    
+    ```bash
+    #!/bin/sh
+    while true; do
+       if mountpoint -q "/var/lib/docker/volumes/plex-nas/_data"; then
+            echo "Share mounted"
+            #break # uncomment to stop the loop
+       else
+            echo "Share not mounted... Restarting container
+            docker restart <container name>
+       fi
+       sleep 5
+    done
+    ```
+
+=== "OpenRC Script"
+
+    Create the OpenRC script file
+    
+    ```shell
+    nano /etc/init.d/share-watchdog
+    ```
+
+    OpenRC file contents:
+    
+    ```shell
+    #!/sbin/openrc-run
+    
+    description="Run share-watchdog script on boot"
+    pidfile="/var/run/share-watchdog.pid"
+    command="/usr/share/scripts/share-watchdog.sh"
+    
+    depend() {
+        need localmount
+        after bootmisc
+    }
+    
+    start() {
+        ebegin "Starting share-watchdog"
+        start-stop-daemon --start --exec "$command" --background --make-pidfile --pidfile "$pidfile"
+        eend $?
+    }
+    
+    stop() {
+        ebegin "Stopping share-watchdog"
+        start-stop-daemon --stop --pidfile "$pidfile"
+        eend $?
+    }
+    ```
+
+    Add the service to `default` so it starts on boot, then start the service.
+    ```shell
+    rc-update add share-watchdog default && rc-service share-watchdog start
+    ```
+
 ### Misc Notes
 
 - Disable "Use SSO" if using Authentik

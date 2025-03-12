@@ -140,3 +140,19 @@ set_real_ip_from 2c0f:f248::/32;
 
 real_ip_header CF-Connecting-IP;
 ```
+
+## Fix Nginx proxy_pass upstream SSL Issues
+
+I was experiencing the following error in my Nginx setup after upgrading Nginx Proxy Manager one day:
+
+```
+SSL_do_handshake() failed (SSL: error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:SSL alert number 112) while SSL handshaking to upstream
+```
+
+To fix this, I had to put the following in my location block (or in Nginx Proxy Manager, put this in the Advanced section of your proxy host):
+
+```
+proxy_ssl_server_name on;
+proxy_ssl_name $host;
+proxy_ssl_session_reuse off;
+```

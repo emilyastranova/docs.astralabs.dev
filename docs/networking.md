@@ -39,31 +39,82 @@ service networking restart
 
 ## SSH Tunneling
 
-SSH tunneling is a way to securely connect to a remote server through a local server. This is useful for accessing a remote server that is behind a firewall or NAT. It can also be used to access a remote server that is not directly accessible from the internet.
+SSH tunneling is a way to securely transport network traffic from one machine to another through an encrypted connection. This is useful for accessing services that are behind a firewall or for securing unencrypted protocols.
 
 ### SSH Port Forwarding
 
-Forward port from local host to remote host:
+This method forwards a single port from one network to another. The optional `<bind_address>` parameter controls which network interface the tunnel listens on. If you omit it, the tunnel is only accessible to the machine it's listening on (`localhost`). If you specify an IP or `0.0.0.0`, other computers on that network can use the tunnel.
 
-```bash
-ssh -R <remote_port>:<local_host>:<local_port> <remote_user>@<remote_host>
-```
+#### Local Port Forwarding
 
-Forward port from remote host to local host:
+This makes a **remote** service available on your **local** machine or network.
 
-```bash
-ssh -L <local_port>:<remote_host>:<remote_port> <remote_user>@<remote_host>
-```
+**Syntax:** `ssh -L [<local_bind_address>:]<local_port>:<destination_host>:<destination_port> <user>@<ssh_server>`
 
-### SSH Dynamic Port Forwarding
+**Example**: You want to connect to a database on `remoteserver.com` from your local network.
 
-This works by creating a SOCKS proxy on the local host. This allows you to route all traffic through the remote host. This application-level port forwarding can only be run as root.
+- **To make it accessible only to your machine:**
+
+    ```bash
+    # On your PC, you can now connect to the database via localhost:5432
+    ssh -L 5432:localhost:5432 user@remoteserver.com
+    ```
+
+- **To make it accessible to your entire local network:**
+
+    ```bash
+    # On your PC (e.g., 192.168.1.50), run this.
+    # Other devices can now connect to the database via 192.168.1.50:5432
+    # Also works with 0.0.0.0 to bind the port to all of the interfaces
+    ssh -L 192.168.1.50:5432:localhost:5432 user@remoteserver.com
+    ```
+
+#### Remote Port Forwarding
+
+This makes a **local** service available on the **remote** server or network.
+
+**Syntax:** `ssh -R [<remote_bind_address>:]<remote_port>:<destination_host>:<destination_port> <user>@<ssh_server>`
+
+**Example**: You want to expose a web server running on your laptop at `localhost:8080` to the remote server.
+
+- **To make it accessible only from the remote server itself:**
+
+    ```bash
+    # On the remote server, you can now access your site via 'curl http://localhost:8000'
+    ssh -R 8000:localhost:8080 user@remoteserver.com
+    ```
+
+- **To make it accessible to the remote server's entire network:**
+
+    ```bash
+    # Anyone who can reach remoteserver.com can now browse to http://remoteserver.com:8000
+    # NOTE: This requires 'GatewayPorts yes' in the remote server's sshd_config file.
+    ssh -R 0.0.0.0:8000:localhost:8080 user@remoteserver.com
+    ```
+
+#### Dynamic Port Forwarding
+
+This works by creating a SOCKS proxy on your local host. This allows you to route traffic from applications on your local machine through the remote host. Running as root is only required if you use a privileged port (a port number below 1024).
 
 Forward all traffic from local host to remote host:
 
 ```bash
 ssh -D <local_port> <remote_user>@<remote_host>
 ```
+
+#### Reverse Dynamic Port Forwarding
+
+This is the inverse of dynamic port forwarding. It opens a SOCKS proxy on the **remote** host that tunnels traffic back to your **local** machine. This is useful when you want applications on the remote server (or other machines on its network) to route their traffic through your local network.
+
+This feature is implemented entirely on the SSH client side, meaning it works even with older SSH servers that don't explicitly support it.
+
+Create a SOCKS proxy on the remote host:
+
+```bash
+ssh -R <remote_socks_port> <remote_user>@<remote_host>
+```
+
+For example, `ssh -R 9050 user@remoteserver.com` would start a SOCKS proxy on port `9050` of `remoteserver.com`. Any application on the remote server configured to use `localhost:9050` as its proxy will have its traffic sent through the SSH tunnel to your local machine, and then out to its final destination.
 
 ## Find Which Process is Using a Port
 

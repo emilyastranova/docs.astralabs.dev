@@ -8,3 +8,4 @@ This section contains documentation for self-hosted services (usually for a home
 - [Plex](plex.md)
 - [Pi-hole](pi-hole.md)
 - [WireGuard](wireguard.md)
+- [Memos](memos.md)

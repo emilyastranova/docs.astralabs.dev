@@ -4,6 +4,7 @@ repo_url: https://github.com/emilyastranova/docs.astralabs.dev
 repo_name: docs.astralabs.dev
 site_description: A Technical Handbook of Essential Niche Advice
 site_author: Emily Astranova
+copyright: Copyright &copy; 2026 Emily Astranova
 remote_branch: main
 edit_uri: 'edit/main/docs/'
 
@@ -32,10 +33,12 @@ nav:
 
 theme:
     name: material
+    logo: assets/images/astralabs-mark.svg
     icon:
-        logo: material/book-open-variant
         repo: fontawesome/brands/github
     favicon: assets/images/favicon.png
+    # Archivo and Martian Mono load from assets/stylesheets/extra.css (full width and weight axes)
+    font: false
     features:
         - navigation.instant
         - navigation.tracking
@@ -47,24 +50,18 @@ theme:
         - content.action.edit
         - content.action.view
         - content.code.copy
+    # AstraLabs is dark only: carbon ground, colours set in extra.css
     palette:
-    # Palette toggle for dark mode
-    -   scheme: slate
-        toggle:
-            icon: material/brightness-4
-            name: Switch to light mode
-        primary: indigo
-        accent: indigo
-    # Palette toggle for light mode
-    -   scheme: default
-        toggle:
-            icon: material/brightness-7 
-            name: Switch to dark mode
-        primary: indigo
-        accent: indigo
+        scheme: slate
+        primary: custom
+        accent: custom
 
-plugins: 
-    - social
+plugins:
+    - social:
+        cards_layout_options:
+            background_color: "#0a0909"
+            color: "#ede6e1"
+            font_family: Archivo
     - search
     - glightbox
 
@@ -77,3 +74,6 @@ markdown_extensions:
 
 extra_css:
     - assets/stylesheets/extra.css
+
+extra:
+    generator: false

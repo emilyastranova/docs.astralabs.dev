@@ -29,6 +29,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # Pin Python: ubuntu-latest's own Python moves on, and old pins (Pillow) stop having wheels for it
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
       - name: Install dependencies
         run: |
           sudo apt update

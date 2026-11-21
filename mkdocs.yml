@@ -37,7 +37,7 @@ theme:
     icon:
         repo: fontawesome/brands/github
     favicon: assets/images/favicon.png
-    # Archivo and Martian Mono load from assets/stylesheets/extra.css (full width and weight axes)
+    # Chakra Petch and Martian Mono load from assets/stylesheets/extra.css
     font: false
     features:
         - navigation.instant
@@ -61,7 +61,7 @@ plugins:
         cards_layout_options:
             background_color: "#0a0909"
             color: "#ede6e1"
-            font_family: Archivo
+            font_family: Chakra Petch
     - search
     - glightbox
 

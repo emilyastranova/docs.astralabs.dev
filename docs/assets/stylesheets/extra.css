@@ -2,7 +2,7 @@
    Carbon ground, Acid for interaction, Bone for text and line work.
    Square corners, hairline rules, mono labels. Dark only. */
 
-@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap");
 
 /* ---------- tokens ---------- */
 :root {
@@ -21,7 +21,7 @@
   --al-down: #ff2e3a;
   --al-dot: rgba(237, 230, 225, .1);
 
-  --md-text-font: "Archivo";
+  --md-text-font: "Chakra Petch";
   --md-code-font: "Martian Mono";
 }
 
@@ -210,8 +210,7 @@
 .md-typeset { font-size: .78rem; line-height: 1.65; }
 
 .md-typeset h1 {
-  font-weight: 800;
-  font-variation-settings: "wdth" 112;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -.005em;
   line-height: 1.05;
@@ -227,8 +226,7 @@
 }
 
 .md-typeset h2 {
-  font-weight: 800;
-  font-variation-settings: "wdth" 110;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .02em;
   font-size: 1.15em;
